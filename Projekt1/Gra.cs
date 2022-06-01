@@ -1,4 +1,6 @@
-﻿    class Gra
+﻿using System;
+
+class Gra
     {
     protected Druzyna pierwsza_druzyna, druga_druzyna;
     protected Sedzia pierwszy_sedzia;

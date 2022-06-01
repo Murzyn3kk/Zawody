@@ -1,4 +1,4 @@
-﻿class Projekt1
+﻿class Projekt
 {
     static void Main(string[] args)
     {
