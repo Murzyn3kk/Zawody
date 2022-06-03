@@ -6,6 +6,8 @@
         this.imie = imie;
         this.nazwisko = nazwisko;
     }
+
+    public string GetString() { return imie + " " + nazwisko; }
 }
 class Sedzia_pomocniczy : Sedzia
 {
