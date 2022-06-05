@@ -19,7 +19,7 @@ namespace Projekt1
             foreach(Druzyna druzyna in listadruzyn)
                 sw.WriteLine(druzyna.GetString());
 
-            sw.WriteLine("Sedzia:");
+            sw.WriteLine(":Sedzia:");
             foreach (Sedzia sedzia in listasedzia)
                 sw.WriteLine(sedzia.GetString());
 
@@ -38,7 +38,7 @@ namespace Projekt1
                     else
                     {
                         string[] s = line.Split(null);
-                        listadruzyn.Add(new Druzyna(s[0], int.Parse(s[1])));
+                        listadruzyn.Add(new Druzyna(s[1], int.Parse(s[0])));
                     }
                 }
                 else if (step == 1){
@@ -48,11 +48,71 @@ namespace Projekt1
             }
             sr.Close();
         }
-        public void Dodaj_Druzyne(Druzyna druzyna) { listadruzyn.Add(druzyna); }
-        public void Usun_Druzyne(Druzyna druzyna) { listadruzyn.Remove(druzyna); }
+        public void Dodaj_Druzyne()
+        {
+            System.Console.WriteLine("Podaj Nazwe");
+            string nazwa = System.Console.ReadLine();
+            if (nazwa == null)
+                return;
+            nazwa = nazwa.Replace(" ", "_");
+            listadruzyn.Add(new Druzyna(nazwa));
+        }
+        public void Usun_Druzyne()
+        {
+            System.Console.WriteLine("Podaj nazwe");
+            string nazwa = System.Console.ReadLine();
+            if (nazwa == null)
+                return;
+            nazwa = nazwa.Replace(" ", "_");
+            for (int i = 0; i < listadruzyn.Count; i++)
+            {
+                Druzyna druzyna = listadruzyn[i];
+                if (nazwa == druzyna.GetNazwa())
+                {
+                    listadruzyn.Remove(druzyna);
+                    i--;
+                }
+            }
+        }
+        public void Przeglad_Druzyny_String()
+        {
+            System.Console.WriteLine("Druzyna: Punkty Nazwa");
+            foreach (Druzyna druzyna in listadruzyn)
+                System.Console.WriteLine("\t" + druzyna.GetString());
+        }
         public List<Druzyna> Przeglad_Druzyny() { return listadruzyn; }
-        public void Dodaj_Sedziego(Sedzia sedzia) { listasedzia.Add(sedzia); }
-        public void Usun_Sedziego(Sedzia sedzia) { listasedzia.Remove(sedzia); }
+        public void Dodaj_Sedziego() 
+        {
+            System.Console.WriteLine("Podaj Imie i Nazwisko");
+            string nazwa = System.Console.ReadLine();
+            if (nazwa == null)
+                return;
+            string[] s = nazwa.Split(null);
+            if(s.Length == 2)
+                listasedzia.Add(new Sedzia(s[0], s[1]));
+        }
+        public void Usun_Sedziego()
+        {
+            System.Console.WriteLine("Podaj Imie i Nazwisko");
+            string nazwa = System.Console.ReadLine();
+            if (nazwa == null)
+                return;
+            for (int i = 0; i < listasedzia.Count; i++)
+            {
+                Sedzia sedzia = listasedzia[i];
+                if (nazwa == sedzia.GetString())
+                {
+                    listasedzia.Remove(sedzia);
+                    i--;
+                }
+            }
+        }
+        public void Przeglad_Sedzia_String()
+        {
+            System.Console.WriteLine("Sedzia: Imie Nazwisko");
+            foreach (Sedzia sedzia in listasedzia)
+                System.Console.WriteLine("\t" + sedzia.GetString());
+        }
         public List<Sedzia> Przeglad_Sedzia() { return listasedzia; }
 
         public List<Druzyna> Tabela_Siatkowka() { return listasiatkowka; }

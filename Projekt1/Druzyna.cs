@@ -16,6 +16,7 @@
     {
         ilosc_punktow_druzyny += value;
     }
-    public string GetString() { return nazwa_druzyny + " " + ilosc_punktow_druzyny; }
+    public string GetNazwa() { return nazwa_druzyny; }
+    public string GetString() { return ilosc_punktow_druzyny + " " + nazwa_druzyny; }
 }
 
