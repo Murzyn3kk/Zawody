@@ -12,6 +12,8 @@ class Projekt
         {
             System.Console.WriteLine("[S] - Menu Sedzia");
             System.Console.WriteLine("[D] - Menu Druzyny");
+            System.Console.WriteLine("[R] - Menu Rozgrywek");
+            System.Console.WriteLine("[ESC] - Wyjscie z programu");
             switch (System.Console.ReadKey().Key)
             {
                 case System.ConsoleKey.Escape:
@@ -48,7 +50,24 @@ class Projekt
                         case System.ConsoleKey.P:
                             zawody.Przeglad_Druzyny_String();
                             break;
-                    } 
+                    }
+                    break;
+                case System.ConsoleKey.R:
+                    System.Console.WriteLine("[S] - Mecz w siatkowke");
+                    System.Console.WriteLine("[D] - Mecz w dwa ognie");
+                    System.Console.WriteLine("[P] - Mecz w przeciaganie liny");
+                    switch (System.Console.ReadKey().Key)
+                    {
+                        case System.ConsoleKey.S:
+                            zawody.Rozgrywka_Siatkowka();
+                            break;
+                        case System.ConsoleKey.D:
+                            zawody.Rozgrywka_Dwa_Ognie();
+                            break;
+                        case System.ConsoleKey.P:
+                            zawody.Rozgrywka_Przeciaganie_Liny();
+                            break;
+                    }
                     break;
             }
         }

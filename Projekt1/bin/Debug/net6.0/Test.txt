@@ -1,6 +1,29 @@
-123 Mlode_Wilki
-456 Chude_Byki
-777 NWO
+:Druzyny:
+1 Chiwawas
+1 NWO
+0 Mlode_Wilki
+0 Copahontas
+0 Chude_Byki
+0 Kluchy
 :Sedzia:
 Jan Kowalski
-Twoj Stary
+Aaa BBb
+:Punkty za siatkowke:
+0 NWO
+0 Chude_Byki
+0 Mlode_Wilki
+0 Copahontas
+0 Chiwawas
+:Punkty za dwa ognie:
+0 NWO
+0 Chude_Byki
+0 Mlode_Wilki
+0 Copahontas
+0 Chiwawas
+:Punkty za przeciaganie liny:
+1 Chiwawas
+1 NWO
+0 Mlode_Wilki
+0 Copahontas
+0 Chude_Byki
+0 Kluchy

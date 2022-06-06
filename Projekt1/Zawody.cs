@@ -16,13 +16,21 @@ namespace Projekt1
         {
             System.IO.StreamWriter sw = new System.IO.StreamWriter(file);
 
-            foreach(Druzyna druzyna in listadruzyn)
-                sw.WriteLine(druzyna.GetString());
-
+            sw.WriteLine(":Druzyny:");
+            foreach (Druzyna druzyna in listadruzyn)
+                sw.WriteLine(druzyna);
             sw.WriteLine(":Sedzia:");
             foreach (Sedzia sedzia in listasedzia)
-                sw.WriteLine(sedzia.GetString());
-
+                sw.WriteLine(sedzia);
+            sw.WriteLine(":Punkty za siatkowke:");
+            foreach (Druzyna druzyna in listasiatkowka)
+                sw.WriteLine(druzyna);
+            sw.WriteLine(":Punkty za dwa ognie:");
+            foreach (Druzyna druzyna in listadwaognie)
+                sw.WriteLine(druzyna);
+            sw.WriteLine(":Punkty za przeciaganie liny:");
+            foreach (Druzyna druzyna in listaprzeciaganieliny)
+                sw.WriteLine(druzyna);
             sw.Close();
         }
         public void Odczyt(string file)
@@ -30,21 +38,38 @@ namespace Projekt1
             System.IO.StreamReader sr = new System.IO.StreamReader(file);
             string line;
             int step = 0;
-            while((line = sr.ReadLine()) != null)
+            while ((line = sr.ReadLine()) != null)
             {
-                if (step == 0){
-                    if (line == ":Sedzia:")
-                        step++;
-                    else
+                if (line[0] == ':') step++;
+                else
+                {
+                    if (step == 1)
                     {
                         string[] s = line.Split(null);
                         listadruzyn.Add(new Druzyna(s[1], int.Parse(s[0])));
                     }
+                    if (step == 2)
+                    {
+                        string[] s = line.Split(null);
+                        listasedzia.Add(new Sedzia(s[0], s[1]));
+                    }
+                    if (step == 3)
+                    {
+                        string[] s = line.Split(null);
+                        listasiatkowka.Add(new Druzyna(s[1], int.Parse(s[0])));
+                    }
+                    if (step == 4)
+                    {
+                        string[] s = line.Split(null);
+                        listadwaognie.Add(new Druzyna(s[1], int.Parse(s[0])));
+                    }
+                    if (step == 5)
+                    {
+                        string[] s = line.Split(null);
+                        listaprzeciaganieliny.Add(new Druzyna(s[1], int.Parse(s[0])));
+                    }
                 }
-                else if (step == 1){
-                    string[] s = line.Split(null);
-                    listasedzia.Add(new Sedzia(s[0], s[1]));
-                }
+
             }
             sr.Close();
         }
@@ -78,10 +103,10 @@ namespace Projekt1
         {
             System.Console.WriteLine("Druzyna: Punkty Nazwa");
             foreach (Druzyna druzyna in listadruzyn)
-                System.Console.WriteLine("\t" + druzyna.GetString());
+                System.Console.WriteLine("\t" + druzyna);
         }
         public List<Druzyna> Przeglad_Druzyny() { return listadruzyn; }
-        public void Dodaj_Sedziego() 
+        public void Dodaj_Sedziego()
         {
             System.Console.WriteLine("Podaj Imie i Nazwisko");
             string nazwa = System.Console.ReadLine();
@@ -111,147 +136,137 @@ namespace Projekt1
         {
             System.Console.WriteLine("Sedzia: Imie Nazwisko");
             foreach (Sedzia sedzia in listasedzia)
-                System.Console.WriteLine("\t" + sedzia.GetString());
+                System.Console.WriteLine("\t" + sedzia);
         }
         public List<Sedzia> Przeglad_Sedzia() { return listasedzia; }
         public void Tabela_Siatkowka_String()
         {
             System.Console.WriteLine("Siatkowka: Punkty, Nazwa druzyny");
-            listasiatkowka.Sort();
             foreach (Druzyna druzyna in listasiatkowka)
-                System.Console.WriteLine("\t" + druzyna.GetString());
+                System.Console.WriteLine("\t" + druzyna);
         }
         public List<Druzyna> Tabela_Siatkowka() { return listasiatkowka; }
         public void Tabela_Dwaognie_String()
         {
             System.Console.WriteLine("Dwa ognie: Punkty, Nazwa druzyny");
-            listadwaognie.Sort();
             foreach (Druzyna druzyna in listadwaognie)
-                System.Console.WriteLine("\t" + druzyna.GetString());
+                System.Console.WriteLine("\t" + druzyna);
         }
         public List<Druzyna> Tabela_Dwaognie() { return listadwaognie; }
         public void Tabela_Przeciaganieliny_String()
         {
             System.Console.WriteLine("Przeciaganie liny: Punkty, Nazwa druzyny");
-            listaprzeciaganieliny.Sort();
             foreach (Druzyna druzyna in listaprzeciaganieliny)
-                System.Console.WriteLine("\t" + druzyna.GetString());
+                System.Console.WriteLine("\t" + druzyna);
         }
         public List<Druzyna> Tabela_Przeciaganieliny() { return listaprzeciaganieliny; }
 
         public void Rozgrywka_Siatkowka()
         {
-            System.Console.WriteLine("Podaj nazwe pierwszej druzyny:");
-            string druzyna1str = System.Console.ReadLine();
-            if (druzyna1str == null)
+            Przeglad_Druzyny_String();
+            System.Console.WriteLine("Wybierz pierwsza druzyne");
+            Druzyna d1 = Wybierz_Druzyne();
+            if (d1 == null)
                 return;
-            druzyna1str = druzyna1str.Replace(" ", "_");
-            Druzyna druzyna1 = Druzyna_Exists(druzyna1str);
-            if (druzyna1 == null)
-                return;
-
-            System.Console.WriteLine("Podaj nazwe drugiej druzyny:");
-            string druzyna2str = System.Console.ReadLine();
-            if (druzyna2str == null || druzyna1str == druzyna2str)
-                return;
-            Druzyna druzyna2 = Druzyna_Exists(druzyna1str);
-            if (druzyna2 == null)
+            System.Console.WriteLine("Wybierz druga druzyne");
+            Druzyna d2 = Wybierz_Druzyne();
+            if (d2 == null || d2 == d1)
                 return;
 
-            System.Console.WriteLine("Podaj nazwe sedziego glownego:");
-            string sedziaglstr = System.Console.ReadLine();
-            if (sedziaglstr == null)
+            Przeglad_Sedzia_String();
+            System.Console.WriteLine("Wybierz sedziego glownego");
+            Sedzia sg = Wybierz_Sedziego();
+            if (sg == null)
                 return;
-            Sedzia sedziagl = Sedzia_Exists(sedziaglstr);
-            if (sedziagl == null)
+            System.Console.WriteLine("Wybierz pierwszego sedziego pomocniczego");
+            Sedzia_pomocniczy sp1 = (Sedzia_pomocniczy)Wybierz_Sedziego();
+            if (sp1 == null || sp1 == sg)
                 return;
-
-            System.Console.WriteLine("Podaj nazwe sedziego pomocniczego:");
-            string sedziapom1str = System.Console.ReadLine();
-            if (sedziapom1str == null || sedziapom1str == sedziaglstr)
-                return;
-            Sedzia sedziapom1 = Sedzia_Exists(sedziapom1str);
-            if (sedziapom1 == null)
+            System.Console.WriteLine("Wybierz drugiego sedziego pomocniczego");
+            Sedzia_pomocniczy sp2 = (Sedzia_pomocniczy)Wybierz_Sedziego();
+            if (sp2 == null || sp2 == sp1 || sp2 == sg)
                 return;
 
-            System.Console.WriteLine("Podaj nazwe drugiego sedziego pomocniczego:");
-            string sedziapom2str = System.Console.ReadLine();
-            if (sedziapom2str == null || sedziapom2str == sedziaglstr || sedziapom2str == sedziapom1str)
-                return;
-            Sedzia sedziapom2 = Sedzia_Exists(sedziapom2str);
-            if (sedziapom2 == null)
-                return;
-
-            Siatkowka siatkowka = new Siatkowka(druzyna1, druzyna2, sedziagl, (Sedzia_pomocniczy)sedziapom1, (Sedzia_pomocniczy)sedziapom2);
+            Siatkowka siatkowka = new Siatkowka(d1, d2, sg, sp1, sp2);
             siatkowka.Rozgrywka();
+            siatkowka.Wpisz_Wynik();
+            Sort(listadruzyn);
         }
-        public void Rozgrywka_Dwaognie()
+        public void Rozgrywka_Dwa_Ognie()
         {
-            System.Console.WriteLine("Podaj nazwe pierwszej druzyny:");
-            string druzyna1str = System.Console.ReadLine();
-            if (druzyna1str == null)
+            Przeglad_Druzyny_String();
+            System.Console.WriteLine("Wybierz pierwsza druzyne");
+            Druzyna d1 = Wybierz_Druzyne();
+            if (d1 == null)
                 return;
-            druzyna1str = druzyna1str.Replace(" ", "_");
-            Druzyna druzyna1 = Druzyna_Exists(druzyna1str);
-            if (druzyna1 == null)
+            System.Console.WriteLine("Wybierz druga druzyne");
+            Druzyna d2 = Wybierz_Druzyne();
+            if (d2 == null || d2 == d1)
                 return;
-
-            System.Console.WriteLine("Podaj nazwe drugiej druzyny:");
-            string druzyna2str = System.Console.ReadLine();
-            if (druzyna2str == null || druzyna1str == druzyna2str)
-                return;
-            Druzyna druzyna2 = Druzyna_Exists(druzyna1str);
-            if (druzyna2 == null)
+            Przeglad_Sedzia_String();
+            System.Console.WriteLine("Wybierz sedziego");
+            Sedzia se = Wybierz_Sedziego();
+            if (se == null)
                 return;
 
-            System.Console.WriteLine("Podaj nazwe sedziego glownego:");
-            string sedziaglstr = System.Console.ReadLine();
-            if (sedziaglstr == null)
-                return;
-            Sedzia sedziagl = Sedzia_Exists(sedziaglstr);
-            if (sedziagl == null)
-                return;
-
-            Dwa_ognie dwaognie = new Dwa_ognie(druzyna1, druzyna2, sedziagl);
+            Dwa_ognie dwaognie = new Dwa_ognie(d1, d2, se);
             dwaognie.Rozgrywka();
+            dwaognie.Wpisz_Wynik();
+            Sort(listadruzyn);
         }
-        public void Rozgrywka_Przeciaganieliny()
+        public void Rozgrywka_Przeciaganie_Liny()
         {
-            System.Console.WriteLine("Podaj nazwe pierwszej druzyny:");
-            string druzyna1str = System.Console.ReadLine();
-            if (druzyna1str == null)
+            Przeglad_Druzyny_String();
+            System.Console.WriteLine("Wybierz pierwsza druzyne");
+            Druzyna d1 = Wybierz_Druzyne();
+            if (d1 == null)
                 return;
-            druzyna1str = druzyna1str.Replace(" ", "_");
-            Druzyna druzyna1 = Druzyna_Exists(druzyna1str);
-            if (druzyna1 == null)
+            System.Console.WriteLine("Wybierz druga druzyne");
+            Druzyna d2 = Wybierz_Druzyne();
+            if (d2 == null || d2 == d1)
                 return;
-
-            System.Console.WriteLine("Podaj nazwe drugiej druzyny:");
-            string druzyna2str = System.Console.ReadLine();
-            if (druzyna2str == null || druzyna1str == druzyna2str)
-                return;
-            Druzyna druzyna2 = Druzyna_Exists(druzyna1str);
-            if (druzyna2 == null)
+            Przeglad_Sedzia_String();
+            System.Console.WriteLine("Wybierz sedziego");
+            Sedzia se = Wybierz_Sedziego();
+            if (se == null)
                 return;
 
-            System.Console.WriteLine("Podaj nazwe sedziego glownego:");
-            string sedziaglstr = System.Console.ReadLine();
-            if (sedziaglstr == null)
-                return;
-            Sedzia sedziagl = Sedzia_Exists(sedziaglstr);
-            if (sedziagl == null)
-                return;
-
-            Przeciaganie_liny przeciaganieliny = new Przeciaganie_liny(druzyna1, druzyna2, sedziagl);
+            Przeciaganie_liny przeciaganieliny = new Przeciaganie_liny(d1, d2, se);
             przeciaganieliny.Rozgrywka();
+            przeciaganieliny.Wpisz_Wynik();
+            Sort(listadruzyn);
         }
+        public Druzyna Wybierz_Druzyne()
+        {
+            System.Console.WriteLine("Podaj nazwe");
+            string nazwa = System.Console.ReadLine();
+            if (nazwa == null)
+                return null;
+            nazwa = nazwa.Replace(" ", "_");
+            Druzyna druzyna = Druzyna_Exists(nazwa);
+            if(druzyna == null)
+                System.Console.WriteLine("Nie ma takiej druzyny");
 
+            return druzyna;
+        }
+        public Sedzia Wybierz_Sedziego()
+        {
+            System.Console.WriteLine("Podaj Imie i Nazwisko");
+            string nazwa = System.Console.ReadLine();
+            if (nazwa == null)
+                return null;
+            Sedzia sedzia = Sedzia_Exists(nazwa);
+            if(sedzia == null)
+                System.Console.WriteLine("Nie ma takiego sedziego");
+
+            return sedzia;
+        }
         private Sedzia Sedzia_Exists(string nazwa)
         {
             for (int i = 0; i < listasedzia.Count; i++)
             {
                 Sedzia sedzia = listasedzia[i];
-                if (nazwa == sedzia.GetString())
+                if (nazwa == sedzia.ToString())
                     return sedzia;
             }
             return null;
@@ -261,10 +276,26 @@ namespace Projekt1
             for (int i = 0; i < listadruzyn.Count; i++)
             {
                 Druzyna druzyna = listadruzyn[i];
-                if (nazwa == druzyna.GetString())
+                if (nazwa == druzyna.GetNazwa())
                     return druzyna;
             }
             return null;
+        }
+        private void Sort(List<Druzyna> d)
+        {
+            for (int i = 0; i < d.Count; i++)
+            {
+                int pun = d[i].GetPunkty();
+                for (int j = i; j < d.Count; j++)
+                {
+                    if (d[j].GetPunkty() > pun)
+                    {
+                        Druzyna temp = d[j];
+                        d[j] = d[i];
+                        d[i] = temp;
+                    }
+                }
+            }
         }
 
         protected List<Druzyna>         listadruzyn;

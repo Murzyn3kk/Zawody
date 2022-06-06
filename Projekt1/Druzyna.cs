@@ -1,4 +1,4 @@
-﻿class Druzyna
+﻿internal class Druzyna
 {
     protected string nazwa_druzyny;
     protected int ilosc_punktow_druzyny;
@@ -17,6 +17,7 @@
         ilosc_punktow_druzyny += value;
     }
     public string GetNazwa() { return nazwa_druzyny; }
-    public string GetString() { return ilosc_punktow_druzyny + " " + nazwa_druzyny; }
+    public int GetPunkty() { return ilosc_punktow_druzyny; }
+    public override string ToString() { return ilosc_punktow_druzyny + " " + nazwa_druzyny; }
 }
 

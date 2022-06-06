@@ -1,13 +1,20 @@
 ﻿class Sedzia
 {
     protected string imie, nazwisko;
+    private Sedzia sedzia;
+
+    public Sedzia(Sedzia sedzia)
+    {
+        this.sedzia = sedzia;
+    }
+
     public Sedzia(string imie, string nazwisko)
     {
         this.imie = imie;
         this.nazwisko = nazwisko;
     }
 
-    public string GetString() { return imie + " " + nazwisko; }
+    public override string ToString() { return imie + " " + nazwisko; } 
 }
 class Sedzia_pomocniczy : Sedzia
 {
