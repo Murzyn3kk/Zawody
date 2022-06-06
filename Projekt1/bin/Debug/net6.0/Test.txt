@@ -1,25 +1,31 @@
 :Druzyny:
+2 NWO
 1 Chiwawas
-1 NWO
-0 Mlode_Wilki
+1 Kluchy
 0 Copahontas
 0 Chude_Byki
-0 Kluchy
+0 Mlode_Wilki
+0 Ziomki
 :Sedzia:
 Jan Kowalski
 Aaa BBb
+Mietek Zul
 :Punkty za siatkowke:
+1 Kluchy
 0 NWO
 0 Chude_Byki
 0 Mlode_Wilki
 0 Copahontas
 0 Chiwawas
+0 Ziomki
 :Punkty za dwa ognie:
+0 Kluchy
 0 NWO
 0 Chude_Byki
 0 Mlode_Wilki
 0 Copahontas
 0 Chiwawas
+0 Ziomki
 :Punkty za przeciaganie liny:
 1 Chiwawas
 1 NWO
@@ -27,3 +33,4 @@ Aaa BBb
 0 Copahontas
 0 Chude_Byki
 0 Kluchy
+0 Ziomki

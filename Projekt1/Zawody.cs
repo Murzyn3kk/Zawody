@@ -85,6 +85,9 @@ namespace Projekt1
                 return;
 
             listadruzyn.Add(new Druzyna(nazwa));
+            listasiatkowka.Add(new Druzyna(nazwa));
+            listadwaognie.Add(new Druzyna(nazwa));
+            listaprzeciaganieliny.Add(new Druzyna(nazwa));
         }
         public void Usun_Druzyne()
         {
@@ -179,11 +182,11 @@ namespace Projekt1
             if (sg == null)
                 return;
             System.Console.WriteLine("Wybierz pierwszego sedziego pomocniczego");
-            Sedzia_pomocniczy sp1 = (Sedzia_pomocniczy)Wybierz_Sedziego();
+            Sedzia sp1 = Wybierz_Sedziego();
             if (sp1 == null || sp1 == sg)
                 return;
             System.Console.WriteLine("Wybierz drugiego sedziego pomocniczego");
-            Sedzia_pomocniczy sp2 = (Sedzia_pomocniczy)Wybierz_Sedziego();
+            Sedzia sp2 = Wybierz_Sedziego();
             if (sp2 == null || sp2 == sp1 || sp2 == sg)
                 return;
 
