@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 internal class Gra
 {
@@ -33,11 +33,18 @@ internal class Gra
             else { kto_wygral = true; System.Console.WriteLine("Wygrala druzyna " + pierwsza_druzyna.GetNazwa()); }
         }
     }
-    public void Wpisz_Wynik()
+    public int Wpisz_Wynik()
     {
         if (kto_wygral)
+        {
             pierwsza_druzyna.DodajPunkty(1);
-        else druga_druzyna.DodajPunkty(1);
+            return 1;
+        }
+        else
+        {
+            druga_druzyna.DodajPunkty(1);
+            return 0;
+        }
     }
 }
 
