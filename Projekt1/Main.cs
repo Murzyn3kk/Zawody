@@ -38,10 +38,10 @@ class Projekt
                 case System.ConsoleKey.D:
                     System.Console.WriteLine("[D] - Dodaj");
                     System.Console.WriteLine("[U] - Usun");
-                    System.Console.WriteLine("[P] - Przejrzyj");
+                    System.Console.WriteLine("[T] - Sumaryczna tabela druzyn");
                     System.Console.WriteLine("[S] - Tabela druzyn w siatkowce");
                     System.Console.WriteLine("[O] - Tabela druzyn w dwoch ogniach");
-                    System.Console.WriteLine("[L] - Tabela druzyn w przeciaganiu liny");
+                    System.Console.WriteLine("[P] - Tabela druzyn w przeciaganiu liny");
                     switch (System.Console.ReadKey().Key)
                     {
                         case System.ConsoleKey.D:
@@ -52,7 +52,7 @@ class Projekt
                             System.Console.Clear();
                             zawody.Usun_Druzyne();
                             break;
-                        case System.ConsoleKey.P:
+                        case System.ConsoleKey.T:
                             System.Console.Clear();
                             zawody.Przeglad_Druzyny_String();
                             break;
@@ -64,7 +64,7 @@ class Projekt
                             System.Console.Clear();
                             zawody.Tabela_Dwaognie_String();
                             break;
-                        case System.ConsoleKey.L:
+                        case System.ConsoleKey.P:
                             System.Console.Clear();
                             zawody.Tabela_Przeciaganieliny_String();
                             break;
