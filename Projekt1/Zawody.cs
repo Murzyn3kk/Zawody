@@ -285,8 +285,12 @@ namespace Projekt1
                 final.Add(listasiatkowka[1]);
                 final.Add(listasiatkowka[2]);
                 final.Add(listasiatkowka[3]);
+                System.Console.WriteLine("Do finalu przechodzą druzyny: ");
                 foreach (Druzyna druzyna in final)
+                {
                     druzyna.DodajPunkty(-druzyna.GetPunkty());
+                    System.Console.WriteLine(druzyna.GetNazwa());
+                }
                 Przeglad_Sedzia_String();
                 System.Console.WriteLine("Wybierz sedziego glownego");
                 Sedzia sg = Wybierz_Sedziego();
