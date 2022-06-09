@@ -1,36 +1,33 @@
 :Druzyny:
-2 NWO
-1 Chiwawas
-1 Kluchy
-0 Copahontas
 0 Chude_Byki
 0 Mlode_Wilki
-0 Ziomki
+0 Zabojcze_Kroliki
+0 Potezne_Mrowki
+0 Latajace_Kury
+0 Kit_Koty
 :Sedzia:
 Jan Kowalski
-Aaa BBb
-Mietek Zul
+Piotr Nowak
+Adam Wojcik
+Andrzej Duda
 :Punkty za siatkowke:
-1 Kluchy
-0 NWO
 0 Chude_Byki
 0 Mlode_Wilki
-0 Copahontas
-0 Chiwawas
-0 Ziomki
+0 Zabojcze_Kroliki
+0 Potezne_Mrowki
+0 Latajace_Kury
+0 Kit_Koty
 :Punkty za dwa ognie:
-0 Kluchy
-0 NWO
 0 Chude_Byki
 0 Mlode_Wilki
-0 Copahontas
-0 Chiwawas
-0 Ziomki
+0 Zabojcze_Kroliki
+0 Potezne_Mrowki
+0 Latajace_Kury
+0 Kit_Koty
 :Punkty za przeciaganie liny:
-1 Chiwawas
-1 NWO
-0 Mlode_Wilki
-0 Copahontas
 0 Chude_Byki
-0 Kluchy
-0 Ziomki
+0 Mlode_Wilki
+0 Zabojcze_Kroliki
+0 Potezne_Mrowki
+0 Latajace_Kury
+0 Kit_Koty
