@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Druzyna">
+    <Position X="19.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAgAAAEAgAAAAAAAAAAAAAAAAAAQAAAEAA=</HashCode>
+      <FileName>Druzyna.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Dwa_ognie">
+    <Position X="15.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dwa_ognie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gra">
+    <Position X="15.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAgFAQAAAAAAEAAA=</HashCode>
+      <FileName>Gra.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Przeciaganie_liny">
+    <Position X="13.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Przeciaganie_liny.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Sedzia">
+    <Position X="11.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACEAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Sedzia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Siatkowka">
+    <Position X="17.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Siatkowka.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Projekt1.Zawody">
+    <Position X="15.5" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAAgQRAAYmIAAAAAACASQIAEgAAkAAAVMAQDCAAABAA=</HashCode>
+      <FileName>Zawody.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
