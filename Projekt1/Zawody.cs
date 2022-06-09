@@ -102,6 +102,9 @@ namespace Projekt1
                 return;
             
             listadruzyn.Remove(druzyna);
+            listasiatkowka.Remove(druzyna);
+            listadwaognie.Remove(druzyna);
+            listaprzeciaganieliny.Remove(druzyna);
         }
         public void Przeglad_Druzyny_String()
         {
@@ -145,6 +148,7 @@ namespace Projekt1
         public List<Sedzia> Przeglad_Sedzia() { return listasedzia; }
         public void Tabela_Siatkowka_String()
         {
+            Sort(listasiatkowka);
             System.Console.WriteLine("Siatkowka: Punkty, Nazwa druzyny");
             foreach (Druzyna druzyna in listasiatkowka)
                 System.Console.WriteLine("\t" + druzyna);
@@ -152,6 +156,7 @@ namespace Projekt1
         public List<Druzyna> Tabela_Siatkowka() { return listasiatkowka; }
         public void Tabela_Dwaognie_String()
         {
+            Sort(listadwaognie);
             System.Console.WriteLine("Dwa ognie: Punkty, Nazwa druzyny");
             foreach (Druzyna druzyna in listadwaognie)
                 System.Console.WriteLine("\t" + druzyna);
@@ -159,6 +164,7 @@ namespace Projekt1
         public List<Druzyna> Tabela_Dwaognie() { return listadwaognie; }
         public void Tabela_Przeciaganieliny_String()
         {
+            Sort(listaprzeciaganieliny);
             System.Console.WriteLine("Przeciaganie liny: Punkty, Nazwa druzyny");
             foreach (Druzyna druzyna in listaprzeciaganieliny)
                 System.Console.WriteLine("\t" + druzyna);
@@ -288,7 +294,6 @@ namespace Projekt1
                 System.Console.WriteLine("Do finalu przechodzą druzyny: ");
                 foreach (Druzyna druzyna in final)
                 {
-                    druzyna.DodajPunkty(-druzyna.GetPunkty());
                     System.Console.WriteLine(druzyna.GetNazwa());
                 }
                 Przeglad_Sedzia_String();
@@ -311,7 +316,18 @@ namespace Projekt1
                     {
                         siatkowka = new Siatkowka(final[i], final[j], sg, sp1, sp2 );
                         siatkowka.Rozgrywka();
-                        siatkowka.Wpisz_Wynik();
+                        int win = siatkowka.Wpisz_Wynik();
+                        foreach (Druzyna druzyna in listadruzyn)
+                        {
+                            if (win == 1 && druzyna.GetNazwa() == final[i].GetNazwa())
+                            {
+                                druzyna.DodajPunkty(1);
+                            }
+                            if (win == 0 && druzyna.GetNazwa() == final[j].GetNazwa())
+                            {
+                                druzyna.DodajPunkty(1);
+                            }
+                        }
                     }
                 }
                 Sort(final);
@@ -320,6 +336,18 @@ namespace Projekt1
                     siatkowka = new Siatkowka(final[0], final[1], sg, sp1, sp2);
                     siatkowka.Rozgrywka();
                     siatkowka.Wpisz_Wynik();
+                    int win = siatkowka.Wpisz_Wynik();
+                    foreach (Druzyna druzyna in listadruzyn)
+                    {
+                        if (win == 1 && druzyna.GetNazwa() == final[0].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                        if (win == 0 && druzyna.GetNazwa() == final[1].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                    }
                 }
                 System.Console.WriteLine("Final wygrala druzyna " + final[0].GetNazwa());
             }
@@ -329,8 +357,11 @@ namespace Projekt1
                 final.Add(listadwaognie[1]);
                 final.Add(listadwaognie[2]);
                 final.Add(listadwaognie[3]);
+                System.Console.WriteLine("Do finalu przechodzą druzyny: ");
                 foreach (Druzyna druzyna in final)
-                    druzyna.DodajPunkty(-druzyna.GetPunkty());
+                {
+                    System.Console.WriteLine(druzyna.GetNazwa());
+                }
                 Przeglad_Sedzia_String();
                 System.Console.WriteLine("Wybierz sedziego");
                 Sedzia sg = Wybierz_Sedziego();
@@ -343,7 +374,18 @@ namespace Projekt1
                     {
                         dwaognie = new Dwa_ognie(final[i], final[j], sg);
                         dwaognie.Rozgrywka();
-                        dwaognie.Wpisz_Wynik();
+                        int win = dwaognie.Wpisz_Wynik();
+                        foreach (Druzyna druzyna in listadruzyn)
+                        {
+                            if (win == 1 && druzyna.GetNazwa() == final[i].GetNazwa())
+                            {
+                                druzyna.DodajPunkty(1);
+                            }
+                            if (win == 0 && druzyna.GetNazwa() == final[j].GetNazwa())
+                            {
+                                druzyna.DodajPunkty(1);
+                            }
+                        }
                     }
                 }
                 Sort(final);
@@ -351,7 +393,18 @@ namespace Projekt1
                 {
                     dwaognie = new Dwa_ognie(final[0], final[1], sg);
                     dwaognie.Rozgrywka();
-                    dwaognie.Wpisz_Wynik();
+                    int win = dwaognie.Wpisz_Wynik();
+                    foreach (Druzyna druzyna in listadruzyn)
+                    {
+                        if (win == 1 && druzyna.GetNazwa() == final[0].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                        if (win == 0 && druzyna.GetNazwa() == final[1].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                    }
                 }
                 System.Console.WriteLine("Final wygrala druzyna " + final[0].GetNazwa());
             }
@@ -361,8 +414,11 @@ namespace Projekt1
                 final.Add(listaprzeciaganieliny[1]);
                 final.Add(listaprzeciaganieliny[2]);
                 final.Add(listaprzeciaganieliny[3]);
+                System.Console.WriteLine("Do finalu przechodzą druzyny: ");
                 foreach (Druzyna druzyna in final)
-                    druzyna.DodajPunkty(-druzyna.GetPunkty());
+                {
+                    System.Console.WriteLine(druzyna.GetNazwa());
+                }
                 Przeglad_Sedzia_String();
                 System.Console.WriteLine("Wybierz sedziego");
                 Sedzia sg = Wybierz_Sedziego();
@@ -375,7 +431,19 @@ namespace Projekt1
                     {
                         przeciaganieliny = new Przeciaganie_liny(final[i], final[j], sg);
                         przeciaganieliny.Rozgrywka();
-                        przeciaganieliny.Wpisz_Wynik();
+ 
+                        int win = przeciaganieliny.Wpisz_Wynik();
+                        foreach (Druzyna druzyna in listadruzyn)
+                        {
+                            if (win == 1 && druzyna.GetNazwa() == final[i].GetNazwa())
+                            {
+                                druzyna.DodajPunkty(1);
+                            }
+                            if (win == 0 && druzyna.GetNazwa() == final[j].GetNazwa())
+                            {
+                                druzyna.DodajPunkty(1);
+                            }
+                        }
                     }
                 }
                 Sort(final);
@@ -383,10 +451,123 @@ namespace Projekt1
                 {
                     przeciaganieliny = new Przeciaganie_liny(final[0], final[1], sg);
                     przeciaganieliny.Rozgrywka();
-                    przeciaganieliny.Wpisz_Wynik();
+                    int win = przeciaganieliny.Wpisz_Wynik();
+                    foreach (Druzyna druzyna in listadruzyn)
+                    {
+                        if (win == 1 && druzyna.GetNazwa() == final[0].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                        if (win == 0 && druzyna.GetNazwa() == final[1].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                    }
                 }
                 System.Console.WriteLine("Final wygrala druzyna " + final[0].GetNazwa());
             }
+            Sort(listadruzyn);
+            Sort(listasiatkowka);
+            Sort(listadwaognie);
+            Sort(listaprzeciaganieliny);
+        }
+        public void Kazdy_Z_Kazdym_Siatkowka()
+        {
+            Przeglad_Sedzia_String();
+            System.Console.WriteLine("Wybierz sedziego glownego");
+            Sedzia sg = Wybierz_Sedziego();
+            if (sg == null)
+                return;
+            System.Console.WriteLine("Wybierz pierwszego sedziego pomocniczego");
+            Sedzia sp1 = Wybierz_Sedziego();
+            if (sp1 == null || sp1 == sg)
+                return;
+            System.Console.WriteLine("Wybierz drugiego sedziego pomocniczego");
+            Sedzia sp2 = Wybierz_Sedziego();
+            if (sp2 == null || sp2 == sp1 || sp2 == sg)
+                return;
+            for (int i = 0; i < listasiatkowka.Count; i++)
+            {
+                for (int j = i + 1; j < listasiatkowka.Count; j++)
+                {
+                    Siatkowka siatkowka = new Siatkowka(listasiatkowka[i], listasiatkowka[j], sg, sp1, sp2);
+                    siatkowka.Rozgrywka();
+                    int win = siatkowka.Wpisz_Wynik();
+                    foreach (Druzyna druzyna in listadruzyn)
+                    {
+                        if (win == 1 && druzyna.GetNazwa() == listasiatkowka[i].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                        if (win == 0 && druzyna.GetNazwa() == listasiatkowka[j].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                    }
+                }
+            }
+            Sort(listadruzyn);
+            Sort(listasiatkowka);
+        }
+        public void Kazdy_Z_Kazdym_DwaOgnie()
+        {
+            Przeglad_Sedzia_String();
+            System.Console.WriteLine("Wybierz sedziego ");
+            Sedzia s = Wybierz_Sedziego();
+            if (s == null)
+                return;
+            for (int i = 0; i < listasiatkowka.Count; i++)
+            {
+                for (int j = i + 1; j < listasiatkowka.Count; j++)
+                {
+                    Dwa_ognie dwaognie = new Dwa_ognie(listadwaognie[i], listadwaognie[j], s);
+                    dwaognie.Rozgrywka();
+                    int win = dwaognie.Wpisz_Wynik();
+                    foreach (Druzyna druzyna in listadruzyn)
+                    {
+                        if (win == 1 && druzyna.GetNazwa() == listadwaognie[i].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                        if (win == 0 && druzyna.GetNazwa() == listadwaognie[j].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                    }
+                }
+            }
+            Sort(listadruzyn);
+            Sort(listadwaognie);
+        }
+        public void Kazdy_Z_Kazdym_PrzeciaganieLiny()
+        {
+            Przeglad_Sedzia_String();
+            System.Console.WriteLine("Wybierz sedziego ");
+            Sedzia s = Wybierz_Sedziego();
+            if (s == null)
+                return;
+            for (int i = 0; i < listasiatkowka.Count; i++)
+            {
+                for (int j = i + 1; j < listasiatkowka.Count; j++)
+                {
+                    Przeciaganie_liny przeciaganieliny = new Przeciaganie_liny(listaprzeciaganieliny[i], listaprzeciaganieliny[j], s);
+                    przeciaganieliny.Rozgrywka();
+                    int win = przeciaganieliny.Wpisz_Wynik();
+                    foreach (Druzyna druzyna in listadruzyn)
+                    {
+                        if (win == 1 && druzyna.GetNazwa() == listaprzeciaganieliny[i].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                        if (win == 0 && druzyna.GetNazwa() == listaprzeciaganieliny[j].GetNazwa())
+                        {
+                            druzyna.DodajPunkty(1);
+                        }
+                    }
+                }
+            }
+            Sort(listadruzyn);
+            Sort(listaprzeciaganieliny);
         }
         public Druzyna Wybierz_Druzyne()
         {

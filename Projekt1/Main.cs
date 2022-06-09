@@ -25,12 +25,15 @@ class Projekt
                     switch (System.Console.ReadKey().Key)
                     {
                         case System.ConsoleKey.D:
+                            System.Console.Clear();
                             zawody.Dodaj_Sedziego();
                             break;
                         case System.ConsoleKey.U:
+                            System.Console.Clear();
                             zawody.Usun_Sedziego();
                             break;
                         case System.ConsoleKey.P:
+                            System.Console.Clear();
                             zawody.Przeglad_Sedzia_String();
                             break;
                     }
@@ -75,6 +78,7 @@ class Projekt
                     System.Console.WriteLine("[D] - Mecz w dwa ognie");
                     System.Console.WriteLine("[P] - Mecz w przeciaganie liny");
                     System.Console.WriteLine("[F] - Finaly");
+                    System.Console.WriteLine("[K] - Kazdy z kazdym");
                     switch (System.Console.ReadKey().Key)
                     {
                         case System.ConsoleKey.S:
@@ -107,6 +111,27 @@ class Projekt
                                 case System.ConsoleKey.P:
                                     System.Console.Clear();
                                     zawody.Finaly("Przeciaganie Liny");
+                                    break;
+                            }
+                            break;
+                        case System.ConsoleKey.K:
+                            System.Console.Clear();
+                            System.Console.WriteLine("[S] - Siatkowka");
+                            System.Console.WriteLine("[D] - Dwa ognie");
+                            System.Console.WriteLine("[P] - Przeciaganie liny");
+                            switch (System.Console.ReadKey().Key)
+                            {
+                                case System.ConsoleKey.S:
+                                    System.Console.Clear();
+                                    zawody.Kazdy_Z_Kazdym_Siatkowka();
+                                    break;
+                                case System.ConsoleKey.D:
+                                    System.Console.Clear();
+                                    zawody.Kazdy_Z_Kazdym_DwaOgnie();
+                                    break;
+                                case System.ConsoleKey.P:
+                                    System.Console.Clear();
+                                    zawody.Kazdy_Z_Kazdym_PrzeciaganieLiny();
                                     break;
                             }
                             break;
